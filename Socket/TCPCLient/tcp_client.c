@@ -27,10 +27,23 @@ int main() {
 
 	//recieve information from server
 	char server_response[256];
-	recv(network_socket, &server_response, sizeof(server_response), 0);
-
+	char server_result[256];
+	char client_command[256];
+	char client_acceptance[256];
+	
+	printf("User command: ");
+	scanf("%s", &client_command);
+	send(network_socket, &client_command, sizeof(client_command), 0);
+	recv(network_socket, &server_response, sizeof(server_response), 0);	
 	//print server's response
-	printf("The server sent the data: %s\n", server_response);
+	printf("Server response: %s\n", server_response);
+
+	//Get result
+	printf("Do you want to execute the command ?(Exec/Term): ");
+	scanf("%s", &client_acceptance);
+	send(network_socket, &client_acceptance, sizeof(client_acceptance), 0);
+	recv(network_socket, &server_result, sizeof(server_result), 0);
+        printf("Result: %s\n", server_result);
 
 	//close the socket
 	close(network_socket);
