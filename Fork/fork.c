@@ -10,7 +10,7 @@ int main() {
 		execl("/bin/ls", "ls", "-l",  NULL);
 	}
 	int status;
-	waitpid(pid_1, &status);
+	waitpid(pid_1, &status, 0);
 	printf("Status: %d\n", status);
 	printf("Child PID: %d, end process.\n",pid_1);
 	return 0;
