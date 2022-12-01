@@ -22,6 +22,7 @@ int main(){
 		if(strcmp(command,"ls") == 0) execlp("ls", "./", NULL);
 		else if (strcmp(command, "pwd") == 0) execlp("pwd", "./", NULL);
 		else if (strcmp(command, "echo") == 0) execlp ("echo", "echo", echos[rand()%3], NULL);
+		else execlp("echo", "echo", "Command not found", NULL);
 	}
 
 	close(fd[1]);
